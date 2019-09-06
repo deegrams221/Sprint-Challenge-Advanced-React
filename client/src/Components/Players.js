@@ -1,28 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React, {useState} from 'react';
+import '../App.css';
+import PlayerCard from './PlayerCard';
 
+export default function Players(props) {
+  const [players, setPlayers] = useState([]);
 
-const Players = (props) => {
-  const [player, setPlayer] = useState();
- 
-  useEffect(() => {
-
-       axios
-        .get(`http://localhost:5000/api/players`)
-        .then(response => {
-          setPlayer(response.data);
-          console.log("Player data: ", response.data);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-  },[]);
-
-  return (
-    <div>
-
+  return(
+    <div className="players">
+      {players.map(player => (
+        <div key={player.id}>
+          <PlayerCard player={player}/>
+        </div>
+      ))}
     </div>
-  );
+  )
 }
-
-export default Players;
