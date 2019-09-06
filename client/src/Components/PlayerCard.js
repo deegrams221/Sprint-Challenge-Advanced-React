@@ -1,18 +1,15 @@
 import React from 'react';
+import '../App.css';
 
-const PlayerCard = ({player}) => {
-  const {name, country, searches} = player;
+export default function PlayerCard(props) {
+  
   return (
-    <div className="player-card">
-      <h2>{name}</h2>
-      <div className="player-country">
-        country: <em>{country}</em>
-      </div>
-      <div className="player-searches">
-        Searches: <strong>{searches}</strong>
-      </div>
+    <div>
+      {props.players.map(player => {
+        return (
+          <li key={player.name}>{player.name}{player.country}{player.searches}</li>
+        )
+      })}
     </div>
-  );
-};
-
-export default PlayerCard;
+  )
+}
