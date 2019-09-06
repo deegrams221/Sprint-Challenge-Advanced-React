@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 
 export default function PlayerList(props) {
+    console.log(props);
   return (
     <div className="player-list">
       <ul>
