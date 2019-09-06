@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
-import Players from './Components/Players';
+import PlayerList from './Components/PlayerList';
 import axios from 'axios';
+import NavBar from "./Components/NavBar";
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      players: [],
+      players: {}
     };
     console.log("Constructor is running");
   }
@@ -19,7 +20,7 @@ class App extends React.Component {
       .get(`http://localhost:5000/api/players`)
       .then(response => { 
         this.setState({players: response.data})
-        console.log("players", this.state.players);
+        console.log("players", response.data)
       })
       .catch(error => console.log(error));
   }
@@ -27,13 +28,10 @@ class App extends React.Component {
   render() {
     console.log(this.state);
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Women's World Cup Players</h1>
-        </header>
-        <div>
-          <Players data={this.state.players} />
-        </div>
+      <div className="App-header">
+        <NavBar />
+        <h1>Women's World Cup Players</h1>
+        <PlayerList players={this.state.players} />
       </div>
     );
   }
