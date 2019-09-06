@@ -20,7 +20,7 @@ class App extends React.Component {
       .get(`http://localhost:5000/api/players`)
       .then(response => { 
         this.setState({players: response.data})
-        console.log("players", response.data)
+        console.log("players: ", response.data)
       })
       .catch(error => console.log(error));
   }
